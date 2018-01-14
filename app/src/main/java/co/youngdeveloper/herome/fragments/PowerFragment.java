@@ -7,20 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import co.youngdeveloper.herome.R;
-import co.youngdeveloper.herome.activities.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MainFragment.OnMainFragmentInteractionListener} interface
+ * {@link PowerFragment.OnPowerFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
+ * Use the {@link PowerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class PowerFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,14 +28,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private String mParam1;
     private String mParam2;
 
-    private Button accidentBtn;
-    private Button geneticBtn;
-    private Button bornBtn;
-    private Button chooseBtn;
+    private OnPowerFragmentInteractionListener mListener;
 
-    private OnMainFragmentInteractionListener mListener;
-
-    public MainFragment() {
+    public PowerFragment() {
         // Required empty public constructor
     }
 
@@ -47,11 +40,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
+     * @return A new instance of fragment PowerFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
-        MainFragment fragment = new MainFragment();
+    public static PowerFragment newInstance(String param1, String param2) {
+        PowerFragment fragment = new PowerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -71,75 +64,23 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_main, container, false);
-
-        accidentBtn = v.findViewById(R.id.accidentBtn);
-        geneticBtn = v.findViewById(R.id.geneticBtn);
-        bornBtn = v.findViewById(R.id.bornBtn);
-        chooseBtn = v.findViewById(R.id.chooseBtn);
-
-        accidentBtn.setOnClickListener(this);
-        geneticBtn.setOnClickListener(this);
-        bornBtn.setOnClickListener(this);
-
-        chooseBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.loadPowerScreen();
-            }
-        });
-
-        chooseBtn.setEnabled(false);
-        chooseBtn.getBackground().setAlpha(128);
-
         // Inflate the layout for this fragment
-        return v;
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        chooseBtn.setEnabled(true);
-        chooseBtn.getBackground().setAlpha(255);
-
-        Button btn = (Button) v;
-
-        accidentBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lightning, 0, 0, 0);
-        geneticBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.atomic, 0, 0, 0);
-        bornBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.rocket, 0, 0, 0);
-
-        int leftDrawable = 0;
-
-
-        if (btn == accidentBtn) {
-            leftDrawable = R.drawable.lightning;
-
-        } else if (btn == geneticBtn) {
-            leftDrawable = R.drawable.atomic;
-
-        } else if (btn == bornBtn) {
-            leftDrawable = R.drawable.rocket;
-
-        }
-
-        btn.setCompoundDrawablesWithIntrinsicBounds(leftDrawable, 0, R.drawable.item_selected, 0);
+        return inflater.inflate(R.layout.fragment_power, container, false);
 
     }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
-            mListener.onMainFragmentInteraction(uri);
+            mListener.onPowerFragmentInteraction(uri);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnMainFragmentInteractionListener) {
-            mListener = (OnMainFragmentInteractionListener) context;
+        if (context instanceof OnPowerFragmentInteractionListener) {
+            mListener = (OnPowerFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -162,8 +103,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnMainFragmentInteractionListener {
+    public interface OnPowerFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onMainFragmentInteraction(Uri uri);
+        void onPowerFragmentInteraction(Uri uri);
     }
 }
