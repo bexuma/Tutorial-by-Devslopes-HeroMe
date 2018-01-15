@@ -101,6 +101,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        MainActivity mainActivity = (MainActivity) getActivity();
         chooseBtn.setEnabled(true);
         chooseBtn.getBackground().setAlpha(255);
 
@@ -115,12 +116,15 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         if (btn == accidentBtn) {
             leftDrawable = R.drawable.lightning;
+            mainActivity.setPowerType(1);
 
         } else if (btn == geneticBtn) {
             leftDrawable = R.drawable.atomic;
+            mainActivity.setPowerType(2);
 
         } else if (btn == bornBtn) {
             leftDrawable = R.drawable.rocket;
+            mainActivity.setPowerType(3);
 
         }
 

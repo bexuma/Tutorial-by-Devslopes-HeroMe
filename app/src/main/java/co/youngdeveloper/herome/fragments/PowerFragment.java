@@ -7,8 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import co.youngdeveloper.herome.R;
+import co.youngdeveloper.herome.activities.MainActivity;
+
+import static co.youngdeveloper.herome.activities.MainActivity.powerType;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,7 +71,10 @@ public class PowerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_power, container, false);
+        View v = inflater.inflate(R.layout.fragment_power, container, false);
+        TextView power = v.findViewById(R.id.power_title);
+        power.setText(powerType);
+        return v;
 
     }
 

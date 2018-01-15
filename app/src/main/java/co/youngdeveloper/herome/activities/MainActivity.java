@@ -12,6 +12,8 @@ import co.youngdeveloper.herome.fragments.PowerFragment;
 
 public class MainActivity extends AppCompatActivity implements MainFragment.OnMainFragmentInteractionListener, PowerFragment.OnPowerFragmentInteractionListener {
 
+    public static String powerType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,24 @@ public class MainActivity extends AppCompatActivity implements MainFragment.OnMa
     public void loadPowerScreen() {
         PowerFragment powerFragment = new PowerFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, powerFragment).addToBackStack(null).commit();
+    }
+
+    public String setPowerType(int selectedPower) {
+        switch (selectedPower) {
+            case 1:
+                powerType = "Accidental";
+                break;
+
+            case 2:
+                powerType = "Genetic";
+                break;
+
+            case 3:
+                powerType = "Born";
+                break;
+        }
+
+        return powerType;
     }
 
     @Override
